@@ -9,7 +9,7 @@ allprojects{  //해당 레파지토리 (하위)프로젝트 전체 적용
         mavenCentral()
 }
 
-BootJar{
+bootJar{
     enabled = false
 }
 
