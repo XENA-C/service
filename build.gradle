@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+allprojects{  //해당 레파지토리 (하위)프로젝트 전체 적용
+    repositories {
+        mavenCentral()
+}
+
+BootJar{
+    enabled = false
+}
+
+    jar{
+        enabled = false
+    }
+
+}
+
