@@ -13,7 +13,8 @@ bootJar{
     enabled = false
 }
 
-    jar{
+
+jar{
         enabled = false
     }
 
