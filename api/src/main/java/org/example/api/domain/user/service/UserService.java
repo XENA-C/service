@@ -50,7 +50,7 @@ public class UserService { //자신의 도메인 로직만 처리
      ).orElseThrow(()-> new ApiException(UserErrorCode.USER_NOT_FOUND, ""));
  }
 
-
+//메서드 명칭은 같지만 매개변수가 다름 --> overloading
     public UserEntity getUserWithThrow( //withThrow : 없으면 예외발생
             Long userId //메서드 명은 같지만 매개변수가 다름--> overloading
     ){

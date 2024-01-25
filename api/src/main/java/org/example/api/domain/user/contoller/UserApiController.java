@@ -24,15 +24,17 @@ public class UserApiController{
 
     @GetMapping("/me")
     public Api<UserResponse> me( //로그인 -> Api 호출
-            @UserSession User user
+           @UserSession User user
+       //parameter 에 @UserSession && 파라미터타입 = User.class --> UserResolver 동작
     ){
-        var response = userBusiness.me(user.getId());
+       //InterCeptor 통과 후 Controller 전달
+       /*  var requestContext = Objects.requireNonNull(RequestContextHolder.getRequestAttributes());
+       var userId = requestContext.getAttribute("userId", RequestAttributes.SCOPE_REQUEST);*/
+       // var response = userBusiness.me(Long.parseLong(userId.toString()));
+       // var response = userBusiness.me();
+       var response = userBusiness.me(user);
+       // requestContext: request 별로 생성
+       return Api.OK(response);
 
-     // requestContext: request 별로 생성
-     // var requestContext = Objects.requireNonNull(RequestContextHolder.getRequestAttributes());
-     // var userId = requestContext.getAttribute("userId", RequestAttributes.SCOPE_REQUEST);
-     // var response = userBusiness.me(Long.parseLong(userId.toString()));
-     // var response = userBusiness.me(null);
-        return Api.OK(response);
     }
 }

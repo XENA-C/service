@@ -39,7 +39,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         }
 
         // TODO handler 검증 : 헤더값 꺼내오기
-        var accessToken = request.getHeader("authorization");
+        var accessToken = request.getHeader("authorization-token");
         if (accessToken == null){ //accesstoken이 없으면
             throw new ApiException(TokenErrorCode.AUTHORIZATION_TOKEN_NOT_FOUND, "인증 헤더 토큰 없음");
         }
@@ -48,13 +48,13 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
 
         if (userId != null){
             var requestContext = Objects.requireNonNull(RequestContextHolder.getRequestAttributes());
+            //한 가지 request 를 Global 하게 저장할 수 잇는 저장소에 저장???
             requestContext.setAttribute("userId", userId, RequestAttributes.SCOPE_REQUEST );
+            //"userId"에 userId 저장 , request 단위로 저장(SCOPE 설정)
             return true;
         }
 
         throw new ApiException(ErrorCode.BAD_REQUEST, "인증실패");
-
-        return true; // 일단 통과 처리
 
     }
 

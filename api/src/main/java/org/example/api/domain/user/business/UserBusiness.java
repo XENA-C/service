@@ -4,11 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.example.api.common.annotation.Business;
 import org.example.api.domain.token.controller.model.TokenResponse;
 import org.example.api.domain.token.business.TokenBusiness;
+import org.example.api.domain.user.contoller.model.User;
 import org.example.api.domain.user.contoller.model.UserLoginRequest;
 import org.example.api.domain.user.contoller.model.UserRegisterRequest;
 import org.example.api.domain.user.contoller.model.UserResponse;
 import org.example.api.domain.user.converter.UserConverter;
 import org.example.api.domain.user.service.UserService;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Business
@@ -64,8 +69,13 @@ public class UserBusiness { // Controller --> Business -> Service(Domain 로직 
     }
 
 
-    public UserResponse me(Long userId){ //로그인 시 사용자 정보 불러오기
-        var userEntity = userService.getUserWithThrow(userId);
+    public UserResponse me(
+            User user
+    ){ //로그인 시 사용자 정보 불러오기
+//        var requestContext = Objects.requireNonNull(RequestContextHolder.getRequestAttributes());
+//        var userId = requestContext.getAttribute("userId", RequestAttributes.SCOPE_REQUEST);
+
+        var userEntity = userService.getUserWithThrow(user.getId());
         var response = userConverter.toResponse(userEntity);
         return response;
     }

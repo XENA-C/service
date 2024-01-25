@@ -19,6 +19,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 @Component
 @RequiredArgsConstructor
 public class UserSessionResolver implements HandlerMethodArgumentResolver {
+    //request -> resolver 실행
 
     private final UserService userService;
 
@@ -26,25 +27,27 @@ public class UserSessionResolver implements HandlerMethodArgumentResolver {
     public boolean supportsParameter(MethodParameter parameter) {
        // 지원하는 파라미터, 어노테이션 체크
 
-        // 1. 어노테이션이 있는지 체크
+        // 1. 어노테이션(UserSession)이 있는지 체크
         var annotation = parameter.hasParameterAnnotation(UserSession.class);
-        // 2. 파라미터 타입 체크
+        // 2. 파라미터(User.class) 타입 체크
         var parameterType = parameter.getParameterType().equals(User.class);
-        return (annotation && parameterType);
+        return (annotation && parameterType);  // --> ok --> resolverArgument 메서드 실행
+
+
 
     }
 
-    @Override //support parameter 에서 true 반환 시 여기 실행
+    @Override //support parameter 에서 true 반환 시 실행
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 
-        //request context holder 에서 찾아오기
+        // request context holder 에서 찾아오기
         var requestContext = RequestContextHolder.getRequestAttributes();
         var userId = requestContext.getAttribute("userId", RequestAttributes.SCOPE_REQUEST);
 
         var userEntity = userService.getUserWithThrow(Long.parseLong(userId.toString()));
+        //userId 를 통해 userService 에서 userEntity 반환
 
-        //사용자 정보 셋팅
-
+        //사용자 정보 셋팅 : User 객체에 UserEntity 정보 입력
         return User.builder()
                 .id(userEntity.getId())
                 .name(userEntity.getName())

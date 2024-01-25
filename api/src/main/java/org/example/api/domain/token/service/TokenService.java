@@ -34,10 +34,10 @@ public class TokenService {
 
     public Long validationToken(String token){ //토큰 벨리데이션 후 로직("userId")의 값을 리턴
         var map = tokenHelperIfs.validationTokenWithThrow(token);
-        var userId = map.get("userId");
 
+        var userId = map.get("userId");
         Objects.requireNonNull(userId, ()->{throw new ApiException(ErrorCode.NULL_POINT, "");
-        });
+        }); //tokenHelperIfs 로 token 검증 -> 그 안에서 userId 찾기 -> 없으면 -> nullPoint
 
         return Long.parseLong(userId.toString());
     }
