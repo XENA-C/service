@@ -13,12 +13,13 @@ import org.example.db.user.enums.UserStatus;
 import java.time.LocalDateTime;
 
 @Data
-@Entity //Entity(value=)와의 차이: 해당클래스의 이름을 스네이크 케이스로 변환하여 db 테이블과 매칭
+@Entity //Entity(value=): 해당클래스의 이름을 스네이크 케이스로 변환하여 db 특정 테이블과 매칭
 @SuperBuilder //baseEntity를 상속
 @EqualsAndHashCode(callSuper = true) //상속:
-@Table(name = "user") //클래스의 이름과 같지않아도
+@Table(name = "user") //클래스의 이름과 같지않아도 DB 테이블 매칭
 @NoArgsConstructor @AllArgsConstructor
 public class UserEntity extends BaseEntity {
+
 
     @Column(length = 50, nullable = false)
     private String name;
@@ -29,7 +30,7 @@ public class UserEntity extends BaseEntity {
     @Column(length = 100, nullable = false)
     private String password;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, columnDefinition = "varchar(50) default 'REGISTERED'")
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
