@@ -5,9 +5,11 @@ import org.example.api.common.error.ErrorCode;
 import org.example.api.common.exception.ApiException;
 import org.example.api.domain.storemenu.controller.model.StoreMenuRegisterRequest;
 import org.example.api.domain.storemenu.controller.model.StoreMenuResponse;
-import org.example.db.StoreMenu.StoreMenuEntity;
+import org.example.db.storeMenu.StoreMenuEntity;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Converter
 public class StoreMenuConverter {
@@ -49,4 +51,14 @@ public class StoreMenuConverter {
 
     }
 
+    public List<Optional<StoreMenuResponse>> toResponso(
+        List<StoreMenuEntity> list
+    ){
+        return list.stream()
+                .map(it -> toResponse(it))
+                .collect(Collectors.toList());
+    }
+
+
 }
+

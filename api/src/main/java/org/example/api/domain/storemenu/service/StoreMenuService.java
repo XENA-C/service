@@ -1,12 +1,11 @@
 package org.example.api.domain.storemenu.service;
 
-import io.swagger.v3.oas.annotations.servers.ServerVariable;
 import lombok.RequiredArgsConstructor;
 import org.example.api.common.error.ErrorCode;
 import org.example.api.common.exception.ApiException;
-import org.example.db.StoreMenu.StoreMenuEntity;
-import org.example.db.StoreMenu.StoreMenuRepository;
-import org.example.db.StoreMenu.enums.StoreMenuStatus;
+import org.example.db.storeMenu.StoreMenuEntity;
+import org.example.db.storeMenu.StoreMenuRepository;
+import org.example.db.storeMenu.enums.StoreMenuStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

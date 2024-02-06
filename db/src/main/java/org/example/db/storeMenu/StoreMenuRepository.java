@@ -1,6 +1,6 @@
-package org.example.db.StoreMenu;
+package org.example.db.storeMenu;
 
-import org.example.db.StoreMenu.enums.StoreMenuStatus;
+import org.example.db.storeMenu.enums.StoreMenuStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

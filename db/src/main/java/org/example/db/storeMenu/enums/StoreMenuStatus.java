@@ -1,4 +1,4 @@
-package org.example.db.StoreMenu.enums;
+package org.example.db.storeMenu.enums;
 
 import lombok.AllArgsConstructor;
 

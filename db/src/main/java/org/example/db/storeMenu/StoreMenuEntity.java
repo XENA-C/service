@@ -1,4 +1,4 @@
-package org.example.db.StoreMenu;
+package org.example.db.storeMenu;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.example.db.StoreMenu.enums.StoreMenuStatus;
-import org.hibernate.Cache;
+import org.example.db.storeMenu.enums.StoreMenuStatus;
 
 import java.math.BigDecimal;
 
@@ -36,7 +35,6 @@ public class StoreMenuEntity {
     private int likeCount;
 
     private int sequence;
-
 
 
 

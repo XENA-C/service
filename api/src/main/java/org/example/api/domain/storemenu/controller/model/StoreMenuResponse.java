@@ -1,11 +1,10 @@
 package org.example.api.domain.storemenu.controller.model;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.db.StoreMenu.enums.StoreMenuStatus;
+import org.example.db.storeMenu.enums.StoreMenuStatus;
 
 import java.math.BigDecimal;
 
