@@ -1,14 +1,14 @@
 package org.example.db.storeuser;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.example.db.BaseEntity;
+import org.example.db.storeuser.enums.StoreUserRole;
+import org.example.db.storeuser.enums.StoreUserStatus;
 import org.hibernate.annotations.Columns;
 
 import java.time.LocalDateTime;
@@ -31,10 +31,12 @@ public class StoreUserEntity extends BaseEntity{
     private String password;
 
     @Column(length = 50 ,nullable= false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private StoreUserStatus status;
 
     @Column(length = 50, nullable= false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private StoreUserRole role;
 
     private LocalDateTime registeredAt;
 
