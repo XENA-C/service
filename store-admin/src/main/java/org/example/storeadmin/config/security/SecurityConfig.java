@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.List;
@@ -49,6 +51,14 @@ public class SecurityConfig {
                     ;
 
         return httpSecurity.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){ //인코드 매치 및 인코드 업그레이드 등을 구현
+
+        //Hash 방식으로 암호화: password 가 들어오면 hash-> 두 값이 동일한지 확인, 인코딩만 가능(decoding 불가)
+        return new BCryptPasswordEncoder();
+
     }
 
 }
